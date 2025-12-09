@@ -15,7 +15,7 @@ export async function action(prevState, formData) {
   //   headers: { "Content-Type": "application/json" },
   // });
   const res = await fetch(
-    "https://userauthentication-next.vercel.app/api/Userdata",
+    "http://userauthentication-next.vercel.app/api/Userdata",
     {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
