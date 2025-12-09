@@ -14,14 +14,11 @@ export async function action(prevState, formData) {
   //   body: JSON.stringify({ name, email, password }),
   //   headers: { "Content-Type": "application/json" },
   // });
-  const res = await fetch(
-    "http://userauthentication-next.vercel.app/api/Userdata",
-    {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  const res = await fetch("/api/Userdata", {
+    method: "POST",
+    body: JSON.stringify({ name, email, password }),
+    headers: { "Content-Type": "application/json" },
+  });
   // const result = await res.json();
   // return {
   //   success: result.success,
