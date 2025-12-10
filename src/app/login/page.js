@@ -1,10 +1,13 @@
-import React from "react";
-import Input from "../Components/Input";
+"use client";
+import { useState } from "react";
 import "./style.css";
+import SignupForm from "../Components/SignupForm";
+import LoginForm from "../Components/LoginForm";
 const login = () => {
+  const [rightSide, setRightSide] = useState(false);
   return (
     <>
-      <div className="login-bg flex">
+      {/* <div className="login-bg flex">
         <div className="overlay"></div>
         <div className="flex h-[100vh] flex-col form-div justify-start py-[4.75rem] px-[7rem] items-start w-[42%]">
           <div className="flex flex-col items-start gap-12">
@@ -22,7 +25,7 @@ const login = () => {
           <div className="btn flex flex-col w-full justify-center ">
             <div className="forgot-btn flex justify-between">
               <div className="flex">
-                {/* <Checkbox/> */}
+
                 <label class="container2">
                   <input type="checkbox" />
                   <div class="checkmark"></div>
@@ -40,7 +43,16 @@ const login = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+      <section className="main-section">
+        <div className="overlay"></div>
+        <div className={`panel ${rightSide ? "move-right" : "move-left"}`}>
+          {rightSide ? <SignupForm /> : <LoginForm />}
+        </div>
+        <button className="toggle-btn" onClick={() => setRightSide(!rightSide)}>
+          Toggle
+        </button>
+      </section>
     </>
   );
 };

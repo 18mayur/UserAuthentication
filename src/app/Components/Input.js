@@ -1,40 +1,33 @@
-'use client'
-import React from 'react';
-import styled from 'styled-components';
+"use client";
+import React from "react";
+import "./input.css";
+import styled from "styled-components";
 
-const Input = () => {
+const Input = ({ InputData }) => {
   return (
     <>
-    <StyledWrapper>
-      <div className="input-container">
-        <input type="text" id="input" required />
-        <label htmlFor="input" className="label">Enter Username</label>
-        <div className="underline" />
-      </div>
-    </StyledWrapper>
-    <StyledWrapper>
-      <div className="input-container">
-        <input type="email" id="input" required />
-        <label htmlFor="input" className="label">Enter Email</label>
-        <div className="underline" />
-      </div>
-    </StyledWrapper>
-    <StyledWrapper>
-      <div className="input-container">
-        <input type="password" id="input" required />
-        <label htmlFor="input" className="label">Enter Password</label>
-        <div className="underline" />
-      </div>
-    </StyledWrapper>
+      <StyledWrapper>
+        {InputData.map((item) => {
+          return (
+            <div className="input-container">
+              <input type={item.type} id="input" required />
+              <label htmlFor="input" className="label">
+                {item.label}
+              </label>
+              <div className="underline" />
+            </div>
+          );
+        })}
+      </StyledWrapper>
     </>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .input-container {
     position: relative;
     margin: 0.75rem auto;
-    width: 380px;
+    width: 530px;
   }
 
   .input-container input[type="text"] {
@@ -112,9 +105,10 @@ const StyledWrapper = styled.div`
   .input-container input[type="email"]:valid ~ .underline {
     transform: scaleX(1);
   }
-    .input-container input[type="password"]:focus ~ .underline,
-    .input-container input[type="password"]:valid ~ .underline {
+  .input-container input[type="password"]:focus ~ .underline,
+  .input-container input[type="password"]:valid ~ .underline {
     transform: scaleX(1);
-  }`;
+  }
+`;
 
 export default Input;

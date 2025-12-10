@@ -1,36 +1,89 @@
-
-
-
-.login-bg{
-    background: url("../../../public/login-page-bg.jpg");
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
+.login-bg {
+  background: url("../../../public/login-page-bg.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
 }
-.overlay{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: #00000060;
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: #00000060;
 }
-.form-div{
-    font-family: "Poppins", sans-serif;
-    z-index: 2;
-    gap: 2.25rem;
-    position: absolute;
-    border-radius: 16px;
-    background: #0000002b;
-    backdrop-filter: blur(8px);
+.form-div {
+  font-family: "Poppins", sans-serif;
+  z-index: 2;
+  gap: 2.25rem;
+  position: absolute;
+  border-radius: 16px;
+  background: #0000002b;
+  backdrop-filter: blur(8px);
 }
-.title-div h2{
-    color: #fff;
-    font-family: "Playfair", serif;
-    font-size: 4.75rem;
-    line-height: 6rem;
+.title-div h2 {
+  color: #fff;
+  font-family: "Playfair", serif;
+  font-size: 4.75rem;
+  line-height: 6rem;
+}
+.main-section {
+  width: 100%;
+  height: 100vh;
+  background: url("../../../public/login-page-bg.jpg") center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel {
+  width: 50%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+
+  background: #28282831;
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.7s ease-in-out;
+}
+
+.move-left {
+  transform: translateX(0%);
+}
+
+.move-right {
+  transform: translateX(100%);
+}
+
+.form-content {
+  width: 70%;
+  color: #9cf59f;
+}
+
+.form-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 3%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  padding: 12px 32px;
+  border-radius: 25px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  z-index: 50;
 }
