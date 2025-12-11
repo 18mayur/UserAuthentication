@@ -26,6 +26,12 @@ body {
     #f6eee3
   );
 }
+.title-div P {
+  color: #fff !important;
+}
+.forgot-btn {
+  color: #fff !important;
+}
 .card {
   background-color: #f5f5f5;
   width: 320px;
@@ -41,22 +47,22 @@ body {
 }
 
 .container {
- display: block;
- position: relative;
- cursor: pointer;
- font-size: 20px;
- user-select: none;
-} 
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
 
- .checkmark {
+.checkmark {
   position: relative;
   top: 0;
   left: 0;
-  height: 1.4em;
-  width: 1.3em;
+  height: 1.2em;
+  width: 1.1em;
   background-color: #ccc;
   transition: all 0.3s;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .container2 input:checked ~ .checkmark {
@@ -77,14 +83,13 @@ body {
 
 .container2 .checkmark:after {
   left: 7px;
-  top: 4px;
-  width: 7px;
-  height: 11px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
   border: solid white;
   border-width: 0 0.15em 0.15em 0;
   transform: rotate(45deg);
 }
-
 @keyframes pop {
   0% {
     transform: scale(1);

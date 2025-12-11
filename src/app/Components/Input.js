@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import "./input.css";
 import styled from "styled-components";
 
 const Input = ({ InputData }) => {
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper className="flex flex-col gap-4">
         {InputData.map((item) => {
           return (
             <div className="input-container">
@@ -25,6 +24,7 @@ const Input = ({ InputData }) => {
 
 const StyledWrapper = styled.div`
   .input-container {
+    color: white;
     position: relative;
     margin: 0.75rem auto;
     width: 530px;
@@ -62,7 +62,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    color: #ccc;
+    color: #fff;
     transition: all 0.3s ease;
     pointer-events: none;
   }
@@ -71,17 +71,20 @@ const StyledWrapper = styled.div`
   .input-container input[type="text"]:valid ~ .label {
     top: -20px;
     font-size: 16px;
+    font-weight: 600;
     color: #2f6b0f;
   }
   .input-container input[type="password"]:focus ~ .label,
   .input-container input[type="password"]:valid ~ .label {
     top: -20px;
     font-size: 16px;
+    font-weight: 600;
     color: #337111;
   }
   .input-container input[type="email"]:focus ~ .label,
   .input-container input[type="email"]:valid ~ .label {
     top: -20px;
+    font-weight: 600;
     font-size: 16px;
     color: #337111;
   }

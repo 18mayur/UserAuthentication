@@ -40,7 +40,7 @@
 }
 
 .panel {
-  width: 50%;
+  width: 45%;
   height: 100vh;
   position: absolute;
   top: 0;
@@ -50,7 +50,6 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
 
   transition: transform 0.7s ease-in-out;
 }
@@ -60,7 +59,7 @@
 }
 
 .move-right {
-  transform: translateX(100%);
+  transform: translateX(125%);
 }
 
 .form-content {
@@ -75,15 +74,25 @@
 
 .toggle-btn {
   position: absolute;
-  top: 3%;
-  left: 53%;
+  font-size: 1.25rem;
+  top: 3.25%;
+  font-weight: 600;
+  /* left: 45%; */
   transform: translate(-50%, -50%);
   padding: 12px 32px;
-  border-radius: 25px;
+  border-radius: 6px;
   border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.153);
+  color: #4eab2c;
   backdrop-filter: blur(8px);
   cursor: pointer;
   z-index: 50;
+  transition: left 0.7s ease-in-out;
+}
+
+.toggle-btn-left {
+  left: 45%;
+}
+.toggle-btn-right {
+  left: 55%;
 }

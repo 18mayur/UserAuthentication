@@ -49,8 +49,13 @@ const login = () => {
         <div className={`panel ${rightSide ? "move-right" : "move-left"}`}>
           {rightSide ? <SignupForm /> : <LoginForm />}
         </div>
-        <button className="toggle-btn" onClick={() => setRightSide(!rightSide)}>
-          Toggle
+        <button
+          className={`toggle-btn ${
+            rightSide ? "toggle-btn-right" : "toggle-btn-left"
+          }`}
+          onClick={() => setRightSide(!rightSide)}
+        >
+          {rightSide ? "Login" : "SignUp"}
         </button>
       </section>
     </>
