@@ -12,13 +12,15 @@ export async function GET() {
 }
 export async function POST(req) {
   const body = await req.json();
-  const { name, email, password } = body;
+  const { name, email, password, role } = body;
+  // if role == admin then post data to adminModal table else to  the userModal
   console.log("routes name ", name);
   await mongoose.connect(connectionStr);
   let newUser = new UserModel({
     name,
     email,
     password,
+    role,
   });
 
   const result = await newUser.save();

@@ -15,16 +15,51 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  background-color: #f6eee3;
+  background-color: #000000;
   opacity: 1;
   background-size: 20px 20px;
-  background-image: repeating-linear-gradient(
+  /* background-image: repeating-linear-gradient(
     0deg,
     #e5decf,
     #e5decf 1px,
     #f6eee3 1px,
     #f6eee3
-  );
+  ); */
+}
+.FormAction {
+  font-size: 3rem;
+  color: white;
+  font-family: "Playfair", serif;
+  animation-name: glow;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.login {
+  font-size: 3rem;
+  color: white;
+  font-family: "Playfair", serif;
+  animation-name: glow2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #614ad3;
+  }
+  to {
+    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #614ad3;
+  }
+}
+@keyframes glow2 {
+  from {
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #4aa5d3;
+  }
+  to {
+    text-shadow: 0px 0px 16px #fff, 0px 0px 16px #4aa5d3;
+  }
 }
 .title-div P {
   color: #fff !important;

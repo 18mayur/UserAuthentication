@@ -6,10 +6,10 @@ const Input = ({ InputData }) => {
   return (
     <>
       <StyledWrapper className="flex flex-col gap-4">
-        {InputData.map((item) => {
+        {InputData.map((item, index) => {
           return (
-            <div className="input-container">
-              <input type={item.type} id="input" required />
+            <div key={index} className="input-container">
+              <input type={item.type} name={item.name} required />
               <label htmlFor="input" className="label">
                 {item.label}
               </label>
