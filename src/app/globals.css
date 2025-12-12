@@ -15,9 +15,9 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  background-color: #000000;
-  opacity: 1;
-  background-size: 20px 20px;
+  /* background-color: #000000;
+  opacity: 1; */
+  background: url("../../public/login-page-bg.jpg") center/cover no-repeat;
   /* background-image: repeating-linear-gradient(
     0deg,
     #e5decf,
