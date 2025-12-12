@@ -4,7 +4,10 @@ import React from "react";
 import "./style.css";
 
 const getUsers = async () => {
-  let data = await fetch("/api/Userdata", { cache: "no-store" });
+  let data = await fetch(
+    "https://userauthentication-next.vercel.app/api/Userdata",
+    { cache: "no-store" }
+  );
   data = await data.json();
   if (data.success) {
     return data.result;
