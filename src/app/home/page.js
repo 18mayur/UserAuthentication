@@ -1,8 +1,10 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 import "./style.css";
 
 const getUsers = async () => {
-  let data = await fetch("http://localhost:3000/api/Userdata");
+  let data = await fetch("/api/Userdata", { cache: "no-store" });
   data = await data.json();
   if (data.success) {
     return data.result;
@@ -26,7 +28,7 @@ const home = async () => {
         </thead>
         <tbody>
           {userlist.map((item, index) => {
-            return (  
+            return (
               <tr key={index}>
                 <td>{index}</td>
                 <td>{item.name}</td>
