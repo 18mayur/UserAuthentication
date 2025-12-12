@@ -1,6 +1,9 @@
 "use client";
 import Input from "./Input";
-// import { useActionState } from "react";
+import { useEffect } from "react";
+import { loginAction } from "../loginAction";
+import { useActionState } from "react";
+// import { redirect } from "next/dist/server/api-utils";
 // import { action } from "../action";
 export default function LoginForm() {
   const InputData = [
@@ -15,9 +18,20 @@ export default function LoginForm() {
       name: "password",
     },
   ];
-  // const [state, formAction, ispending] = useActionState(action, undefined);
+  const [state, formAction2, ispending] = useActionState(loginAction, {});
+  console.log("STATE FROM SERVER:", state.message);
+  useEffect(() => {
+    if (state.success) {
+      window.location.href = "/home";
+    } else {
+      alert(state.message);
+    }
+    // if (state?.message) {
+    //   alert(state.message);
+    // }
+  }, [state]);
   return (
-    <form>
+    <form action={formAction2}>
       <div className="flex flex-col pt-[8rem] gap-[1.125rem] items-center">
         <div className="flex flex-col items-start gap-12">
           <div className="title-div flex flex-col items-start">
@@ -42,10 +56,11 @@ export default function LoginForm() {
             <span>Forgot Password?</span>
           </div>
           <button
+            disabled={ispending}
             data-ripple-light="true"
             class="block w-full select-none rounded-lg bg-gradient-to-tr from-cyan-600 to-cyan-400 py-3 px-6 text-center align-middle  text-[1rem] font-bold uppercase text-white shadow-md shadow-cyan-500/20 transition-all hover:shadow-lg hover:shadow-cyan-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           >
-            login
+            {ispending ? "Checking" : "login"}
           </button>
         </div>
       </div>
