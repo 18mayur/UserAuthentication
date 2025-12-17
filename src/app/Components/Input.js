@@ -7,6 +7,23 @@ const Input = ({ InputData }) => {
     <>
       <StyledWrapper className="flex flex-col gap-4">
         {InputData.map((item, index) => {
+          if (item.type === "select") {
+            return (
+              <div key={index} className="input-container">
+                <select name={item.name} required defaultValue="user">
+                  <option value="" disabled hidden />
+                  {item.options.map((opt, i) => (
+                    <option key={i} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+                <label className="label">{item.label}</label>
+                <div className="underline" />
+              </div>
+            );
+          }
+
           return (
             <div key={index} className="input-container">
               <input type={item.type} name={item.name} required />
@@ -28,6 +45,24 @@ const StyledWrapper = styled.div`
     position: relative;
     margin: 0.75rem auto;
     width: 530px;
+  }
+  input,
+  select {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    color: white;
+  }
+  option {
+    color: black;
+  }
+  select {
+    appearance: none;
+    cursor: pointer;
   }
 
   .input-container input[type="text"] {
@@ -88,7 +123,15 @@ const StyledWrapper = styled.div`
     font-size: 16px;
     color: #337111;
   }
-
+  input:focus ~ .label,
+  input:valid ~ .label,
+  select:focus ~ .label,
+  select:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #337111;
+  }
   .input-container .underline {
     position: absolute;
     bottom: 0;
@@ -99,7 +142,131 @@ const StyledWrapper = styled.div`
     transform: scaleX(0);
     transition: all 0.3s ease;
   }
+  input:focus ~ .underline,
+  input:valid ~ .underline,
+  select:focus ~ .underline,
+  select:valid ~ .underline {
+    transform: scaleX(1);
+  }
+  .input-container input[type="text"]:focus ~ .underline,
+  .input-container input[type="text"]:valid ~ .underline {
+    transform: scaleX(1);
+  }
+  .input-container input[type="email"]:focus ~ .underline,
+  .input-container input[type="email"]:valid ~ .underline {
+    transform: scaleX(1);
+  }
+  .input-container input[type="password"]:focus ~ .underline,
+  .input-container input[type="password"]:valid ~ .underline {
+    transform: scaleX(1);
+  .input-container {
+    color: white;
+    position: relative;
+    margin: 0.75rem auto;
+    width: 530px;
+  }
+  input,
+  select {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    color: white;
+  }
+  option {
+    color: black;
+  }
+  select {
+    appearance: none;
+    cursor: pointer;
+  }
 
+  .input-container input[type="text"] {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+  }
+  .input-container input[type="password"] {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+  }
+  .input-container input[type="email"] {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+  }
+
+  .input-container .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .input-container input[type="text"]:focus ~ .label,
+  .input-container input[type="text"]:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2f6b0f;
+  }
+  .input-container input[type="password"]:focus ~ .label,
+  .input-container input[type="password"]:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #337111;
+  }
+  .input-container input[type="email"]:focus ~ .label,
+  .input-container input[type="email"]:valid ~ .label {
+    top: -20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #337111;
+  }
+  input:focus ~ .label,
+  input:valid ~ .label,
+  select:focus ~ .label,
+  select:valid ~ .label {
+    top: -20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #337111;
+  }
+  .input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #429515;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+  input:focus ~ .underline,
+  input:valid ~ .underline,
+  select:focus ~ .underline,
+  select:valid ~ .underline {
+    transform: scaleX(1);
+  }
   .input-container input[type="text"]:focus ~ .underline,
   .input-container input[type="text"]:valid ~ .underline {
     transform: scaleX(1);

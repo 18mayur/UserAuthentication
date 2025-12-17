@@ -10,21 +10,7 @@ export async function GET() {
   console.log(data);
   return NextResponse.json({ result: data, success: true });
 }
-// export async function POST(req) {
-//   const body = await req.json();
-//   const { name, email, password, role } = body;
 
-//   await mongoose.connect(connectionStr);
-//   let newUsers = new NewUserModel({
-//     name,
-//     email,
-//     password,
-//     role,
-//   });
-
-//   const result = await newUsers.save();
-//   return NextResponse.json({ result, success: true });
-// }
 export async function POST(req) {
   const body = await req.json();
   const { name, email, password, role } = body;

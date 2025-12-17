@@ -1,7 +1,8 @@
 "use client";
 import Input from "./Input";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { signupAction } from "../signupAction";
+import "./signup.css";
 export default function SignupForm() {
   const InputData = [
     {
@@ -19,16 +20,14 @@ export default function SignupForm() {
       label: "Enter Password",
       name: "password",
     },
-    {
-      type: "text",
-      label: "Role",
-      name: "role",
-    },
   ];
   const [state, formAction, ispending] = useActionState(
     signupAction,
     undefined
   );
+  const [role, setRole] = useState("User");
+
+  console.log(role);
   return (
     <form action={formAction}>
       <div className="flex flex-col !text-[#fff] pt-[5.35rem] gap-[1.125rem]  items-center">
@@ -41,6 +40,37 @@ export default function SignupForm() {
           </div>
           <div className="flex flex-col gap-2">
             <Input InputData={InputData} />
+            <div className="input-container">
+              <select
+                name="role"
+                required
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="" disabled hidden />
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+              </select>
+              <label className="label">Select Role</label>
+              <div className="underline" />
+            </div>
+            {role === "Admin" ? (
+              <div className="input-container">
+                <select
+                  name="team"
+                  required
+                >
+                  <option value="" disabled hidden />
+                  <option value="Accounts">Accounts</option>
+                  <option value="Testing">Testing</option>
+                  <option value="Server">Server</option>
+                  <option value="Devlopment">Devlopment</option>
+                </select>
+                <label className="label">Select Team</label>
+                <div className="underline" />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="btn flex flex-col gap-[4rem] w-full justify-center ">

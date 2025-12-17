@@ -9,10 +9,12 @@ export async function loginAction(prevState, formData2) {
 
   const email = formData2.get("email");
   const password = formData2.get("password");
-  console.log(formData2);
+  const role = formData2.get("role");
+  // console.log(formData2);
   // console.log("username -", name);
   console.log("Email -", email);
   console.log("Password -", password);
+  console.log("role ", role);
 
   let user = await UserModel.findOne({ email });
   user = JSON.parse(JSON.stringify(user));
@@ -24,7 +26,6 @@ export async function loginAction(prevState, formData2) {
   if (user.password !== password) {
     return { success: false, message: "Invalid password" };
   }
-
 
   return { success: true, user, message: "user verfied" };
 

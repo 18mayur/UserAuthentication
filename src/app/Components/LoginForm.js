@@ -17,15 +17,37 @@ export default function LoginForm() {
       label: "Enter Password",
       name: "password",
     },
+    {
+      type: "select",
+      label: "Select Role",
+      name: "role",
+      options: ["user", "admin"],
+    },
   ];
-  const [state, formAction2, ispending] = useActionState(loginAction, {});
+  const initialState = {
+    success: null,
+    message: "",
+  };
+  const [state, formAction2, ispending] = useActionState(
+    loginAction,
+    initialState
+  );
   console.log("STATE FROM SERVER:", state.message);
   useEffect(() => {
-    if (state.success) {
-      window.location.href = "/home";
-    } else {
-      alert(state.message);
-    }
+    if (state.success === null) return;
+    setTimeout(() => {
+      if (state.success === true) {
+        window.location.href = "/home";
+      } else if (state.success === false) {
+        alert(state.message);
+      }
+    }, 1000);
+
+    // if (state.success) {
+    //   window.location.href = "/home";
+    // } else {
+    //   alert(state.message);
+    // }
     // if (state?.message) {
     //   alert(state.message);
     // }
