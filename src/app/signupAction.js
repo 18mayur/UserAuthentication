@@ -1,5 +1,5 @@
 "use server";
-
+const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export async function signupAction(prevState, formData) {
   const name = formData.get("name");
   const email = formData.get("email");
@@ -16,7 +16,7 @@ export async function signupAction(prevState, formData) {
 
   if (role === "Admin") {
     console.log("this is for the admin routes");
-    const res = await fetch("http://localhost:3000/api/admins", {
+    const res = await fetch(`${BaseUrl}/api/admins`, {
       method: "POST",
       body: JSON.stringify({ name, email, password, role, team }),
       headers: { "Content-Type": "application/json" },
