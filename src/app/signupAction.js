@@ -15,14 +15,14 @@ export async function signupAction(prevState, formData) {
   console.log("Team -", team);
 
   if (role === "Admin") {
-    console.log("this is for the admin routes");
+    console.log("This a is for the admin routes");
     const res = await fetch(`${BaseUrl}/api/admins`, {
       method: "POST",
       body: JSON.stringify({ name, email, password, role, team }),
       headers: { "Content-Type": "application/json" },
     });
   } else {
-    console.log("This is for the User routes");
+    console.log("This is a for the User routes");
     const res = await fetch("http://localhost:3000/api/Userdata", {
       method: "POST",
       body: JSON.stringify({ name, email, password, role }),
