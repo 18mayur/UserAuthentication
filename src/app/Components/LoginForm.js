@@ -1,8 +1,9 @@
 "use client";
 import Input from "./Input";
 import { useEffect } from "react";
-import { loginAction } from "../loginAction";
+// import { loginAction } from "../loginAction";
 import { useActionState } from "react";
+import { loginAction } from "../(auth)/login/action";
 // import { redirect } from "next/dist/server/api-utils";
 // import { action } from "../action";
 export default function LoginForm() {
@@ -37,20 +38,12 @@ export default function LoginForm() {
     if (state.success === null) return;
     setTimeout(() => {
       if (state.success === true) {
+        alert(state.message);
         window.location.href = "/home";
       } else if (state.success === false) {
         alert(state.message);
       }
     }, 1000);
-
-    // if (state.success) {
-    //   window.location.href = "/home";
-    // } else {
-    //   alert(state.message);
-    // }
-    // if (state?.message) {
-    //   alert(state.message);
-    // }
   }, [state]);
   return (
     <form action={formAction2}>

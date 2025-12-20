@@ -1,48 +1,43 @@
-export const dynamic = "force-dynamic";
-
 import React from "react";
+import { getUsers } from "@/services/getUsers";
 import "./style.css";
 
-const getUsers = async () => {
-  let data = await fetch(
-    "https://userauthentication-next.vercel.app/api/Userdata",
-    { cache: "no-store" }
-  );
-  data = await data.json();
-  if (data.success) {
-    return data.result;
-  } else {
-    return { success: false };
-  }
-};
 const home = async () => {
-  const userlist = await getUsers();
-  console.log("user list ", userlist);
+  const userList = await getUsers();
+  console.log("user list ", userList);
   return (
-    <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Sr. NO</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userlist.map((item, index) => {
-            return (
-              <tr key={index}>
-                <td>{index}</td>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.role}</td>
+    <>
+      {userList.length <= 0 ? (
+        <div className="container">
+          <h1 className="text-[3rem] text-white">No user added in DB</h1>
+        </div>
+      ) : (
+        <div class="container">
+          <table>
+            <thead>
+              <tr>
+                <th>Sr. NO</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody>
+              {userList.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.role}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 };
 

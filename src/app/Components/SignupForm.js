@@ -1,9 +1,11 @@
 "use client";
 import Input from "./Input";
-import { useActionState, useState } from "react";
-import { signupAction } from "../signupAction";
+import { useActionState, useEffect, useState } from "react";
+// import { signupAction } from "../signupAction";
+import { signupAction } from "../(auth)/signup/action";
+
 import "./signup.css";
-export default function SignupForm() {
+export default function SignupForm(props) {
   const InputData = [
     {
       type: "text",
@@ -21,10 +23,28 @@ export default function SignupForm() {
       name: "password",
     },
   ];
+  const initialState = {
+    success: null,
+    message: "",
+  };
   const [state, formAction, ispending] = useActionState(
     signupAction,
-    undefined
+    initialState
   );
+  useEffect(() => {
+    if (state.success === null) return;
+
+    if (state.success === true) {
+      alert(state.message);
+    } else if (state.success === false) {
+      alert(state.message);
+    }
+  }, [state]);
+  // console.log("props ", props.success);
+  // const handlesubmit = () => {
+  //   console.log(state.success);
+  //   console.log(state.message);
+  // };
   const [role, setRole] = useState("User");
 
   console.log(role);
@@ -55,10 +75,7 @@ export default function SignupForm() {
             </div>
             {role === "Admin" ? (
               <div className="input-container">
-                <select
-                  name="team"
-                  required
-                >
+                <select name="team" required>
                   <option value="" disabled hidden />
                   <option value="Accounts">Accounts</option>
                   <option value="Testing">Testing</option>
@@ -87,6 +104,7 @@ export default function SignupForm() {
           <button
             disabled={ispending}
             data-ripple-light="true"
+            // onClick={handlesubmit}
             class="block w-full select-none rounded-lg bg-gradient-to-tr from-cyan-600 to-cyan-400 py-3 px-6 text-center align-middle text-[1rem] font-bold uppercase text-white shadow-md shadow-cyan-500/20 transition-all hover:shadow-lg hover:shadow-cyan-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           >
             {ispending ? "Submitting" : "SignUp"}

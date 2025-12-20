@@ -12,6 +12,7 @@ export async function signupAction(prevState, formData) {
   const team = formData.get("team");
 
   // console.log("", formData);
+  console.log(origin)
   console.log("username -", name);
   console.log("Email -", email);
   console.log("Password -", password);
