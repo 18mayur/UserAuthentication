@@ -54,7 +54,7 @@ export default async function proxy(req) {
 
   if (token) {
     try {
-      await decrypt(token); 
+      await decrypt(token);
       isAuthenticated = true;
     } catch {
       isAuthenticated = false;
@@ -74,3 +74,6 @@ export default async function proxy(req) {
 
   return NextResponse.next();
 }
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};
