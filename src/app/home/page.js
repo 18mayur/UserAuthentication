@@ -3,16 +3,17 @@
 import { getUsers } from "@/services/getUsers";
 import "./style.css";
 
+export const dynamic = "force-dynamic";
 const home = async () => {
   // const [userList, setUserList] = useState([]);
   // useEffect(() => {
   //   const fetchUsers = async () => {
   //     const user = await getUsers();
   //     setUserList(user);
-  //     console.log("user list ", userList);
+  //     // console.log("user list ", userList);
   //   };
   //   fetchUsers();
-  // }, [userList]);
+  // }, []);
   const userList = await getUsers();
   return (
     <div class="container">
@@ -32,7 +33,7 @@ const home = async () => {
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.role}</td>  
+                <td>{item.role}</td>
               </tr>
             );
           })}

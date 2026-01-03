@@ -44,36 +44,52 @@
 import { NextResponse } from "next/server";
 import { decrypt } from "./lib/encryption/encrypt";
 
-// const protectedRoute = ["/home"];
-// const publicRoute = ["/login", "/"];
-export default async function proxy(req) {
+export default async function middleware(req) {
   const path = req.nextUrl.pathname;
   const token = req.cookies.get("session")?.value;
 
-  let isAuthenticated = false;
+  let session = null;
 
   if (token) {
     try {
-      await decrypt(token);
-      isAuthenticated = true;
+      session = await decrypt(token);
     } catch {
-      isAuthenticated = false;
+      session = null;
     }
   }
 
-  const isProtectedRoute = path.startsWith("/home");
   const isPublicRoute = path === "/" || path === "/login";
+  const isAdminRoute = path === "/admin" || path.startsWith("/admin/");
+  const isUserRoute =
+    path === "/home" ||
+    path.startsWith("/home/") ||
+    path === "/dashboard" ||
+    path.startsWith("/dashboard/");
+  const userRole = session?.userData.role;
+  console.log("session role  data", userRole);
 
-  if (isProtectedRoute && !isAuthenticated) {
+  if (!session && !isPublicRoute) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (isPublicRoute && isAuthenticated) {
+  if (session && isPublicRoute) {
+    if (session.role === "admin") {
+      return NextResponse.redirect(new URL("/admin", req.url));
+    }
     return NextResponse.redirect(new URL("/home", req.url));
+  }
+
+  if (session) {
+    const { role } = session;
+
+    if (role === "user" && isAdminRoute) {
+      return NextResponse.redirect(new URL("/home", req.url));
+    }
   }
 
   return NextResponse.next();
 }
+
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };
