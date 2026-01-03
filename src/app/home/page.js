@@ -1,7 +1,5 @@
 // "use client";
 // import { useEffect, useState } from "react";
-export const dynamic = "force-dynamic";
-
 import { getUsers } from "@/services/getUsers";
 import "./style.css";
 
@@ -34,7 +32,7 @@ const home = async () => {
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.role}</td>
+                <td>{item.role}</td>  
               </tr>
             );
           })}

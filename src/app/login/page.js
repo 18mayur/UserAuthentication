@@ -47,7 +47,7 @@ const login = () => {
       <section className="main-section">
         <div className="overlay"></div>
         <div className={`panel ${rightSide ? "move-right" : "move-left"}`}>
-          {rightSide ? <SignupForm /> : <LoginForm />}
+          {rightSide ? <LoginForm /> : <SignupForm />}
         </div>
         <button
           className={`toggle-btn ${

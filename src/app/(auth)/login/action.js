@@ -1,5 +1,5 @@
 "use server";
-
+import { CreateSession } from "@/lib/session";
 import { loginAdmin, loginUser } from "@/services/auth";
 
 export async function loginAction(prevState, formData) {
@@ -15,7 +15,12 @@ export async function loginAction(prevState, formData) {
     } else {
       account = await loginUser(email, password);
     }
-
+    await CreateSession({
+      userData: {
+        email: email,
+        role: role,
+      },
+    });
     return {
       success: true,
       user: account,
