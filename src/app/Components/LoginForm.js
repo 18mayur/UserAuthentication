@@ -4,9 +4,11 @@ import { useEffect } from "react";
 // import { loginAction } from "../loginAction";
 import { useActionState } from "react";
 import { loginAction } from "../(auth)/login/action";
-// import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
+
 // import { action } from "../action";
 export default function LoginForm() {
+  const router = useRouter();
   const InputData = [
     {
       type: "email",
@@ -35,16 +37,14 @@ export default function LoginForm() {
   );
   console.log("STATE FROM SERVER:", state.message);
   useEffect(() => {
-    if (state.success === null) return;
-    setTimeout(() => {
-      if (state.success === true) {
-        alert(state.message);
-        window.location.href = "/home";
-      } else if (state.success === false) {
-        alert(state.message);
-      }
-    }, 1000);
-  }, [state]);
+    if (state?.success === true) {
+      router.replace("/login");
+    }
+
+    if (state?.success === false) {
+      alert(state.message);
+    }
+  }, [state, router]);
   return (
     <form action={formAction2}>
       <div className="flex flex-col pt-[8rem] gap-[1.125rem] items-center">

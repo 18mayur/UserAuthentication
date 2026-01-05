@@ -1,6 +1,7 @@
 "use server";
 import { CreateSession } from "@/lib/session";
 import { loginAdmin, loginUser } from "@/services/auth";
+// import { redirect } from "next/navigation";
 
 export async function loginAction(prevState, formData) {
   const email = formData.get("email");
@@ -16,16 +17,14 @@ export async function loginAction(prevState, formData) {
       account = await loginUser(email, password);
     }
     await CreateSession({
-      userData: {
         email: email,
         role: role,
-      },
     });
     return {
       success: true,
-      user: account,
       message: "Login successful",
     };
+    // redirect("/home");
   } catch (error) {
     return {
       success: false,
